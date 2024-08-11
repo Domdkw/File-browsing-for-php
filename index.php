@@ -29,7 +29,7 @@ if (isset($_GET['path'])) {
   $pathget = '/dav';
 }
 
-$rootPath = "/storage/emulated/0/Documents/"; // 根路径
+$rootPath = "/www/wwwroot/192.168.191.131/explorer/"; // 根路径
 $fullPath = rtrim($rootPath, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . ltrim($pathget, DIRECTORY_SEPARATOR);
 
 try {
@@ -105,6 +105,7 @@ if ($files = scandir($fullPath)) {
         if($subfolderNames != ''){
         for ($i = 0; $i < $subfoldercount; $i++) {
           echo'
+          <div class="link-li">
           <a id="/'.$subfolderNames[$i].'" href="" class="list-file unselectable type-folder">
             <div class="name">
               <img class="f-icon" src="folder.svg">
@@ -113,10 +114,11 @@ if ($files = scandir($fullPath)) {
             <div class="dac"><h4 class="dac-text">文件夹</h4></div>
             <div class="dac"><h4 class="dac-text">---</h4></div>
           </a>
+          </div>
           ';
         }}
         $i = 0;
-        $icon = array('unknown','svg','png','html','htm','php','js','mp4','mp3','jpg','css','jfif','avi','exe','zip','mov','gif','json','rar','pdf','txt','jar','doc','aac','sql','ppt','csv','dll','flv','iso','xls','ttf','xml','docx','woff','sh','pptx','py','mp4','mkv','mhtml','jpeg','flc','cmd','c','bmp','7z');
+        $icon = array('unknown','svg','png','html','htm','php','js','mp4','mp3','jpg','css','jfif','avi','exe','zip','mov','gif','json','rar','pdf','txt','jar','doc','aac','sql','ppt','csv','dll','flv','iso','xls','ttf','xml','docx','woff','sh','pptx','py','mp4','mkv','mhtml','jpeg','flc','cmd','c','bmp','7z','webp','conf','wav','ogg');
         if($fileNames != ''){
         for ($i = 0; $i < $fileListcount; $i++) {
           if(in_array($extensions[$i], $icon)){
@@ -127,16 +129,16 @@ if ($files = scandir($fullPath)) {
 
           if($pathget === ''){
             $file = $fileNames[$i] . '.' . $extensions[$i];
+          }elseif($pathget === '/'){
+            $file = '/' . $fileNames[$i] . '.' . $extensions[$i];
           }else{
             $file = $pathget . '/' . $fileNames[$i] . '.' . $extensions[$i];
           }
-          if (file_exists($file)) {
-            $date = date("Y-m-d H:i:s.", filemtime($file));
-          } else {
-            $date = "---";
-          }
+
+          $date = date("Y-m-d", filemtime($rootPath . $file));
 
           echo'
+          <div class="link-li">
           <a id="'.$fileNames[$i].'" href="" class="list-file unselectable type-files">
             <div class="name">
               <img class="f-icon" src="'.$icon[$iconnum].'.svg">
@@ -145,6 +147,10 @@ if ($files = scandir($fullPath)) {
             <div class="dac"><h4 class="dac-text js-ex">'.$extensions[$i].'</h4></div>
             <div class="dac"><h4 class="dac-text">'.$date.'</h4></div>
           </a>
+          <a class="dl" href="'.'/explorer'.$file.'" download="'.$fileNames[$i].'" title="下载">
+            <img class="dl-img" src="download.svg">
+          </a>
+          </div>
           ';
         }}
         ?>

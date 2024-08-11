@@ -40,7 +40,7 @@ for (var i = 0; i < links.length; i++) {
     if(ids[i][0] === '/'){
         links[i].href = '?path=' + pathValue + ids[i];
     }else{
-        links[i].href = pathValue + '/' + ids[i] + '.' + texts[w];
+        links[i].href = '/explorer' + pathValue + '/' + ids[i] + '.' + texts[w];
         w = w + 1;
     }
 }
