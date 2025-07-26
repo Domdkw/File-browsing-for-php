@@ -6,75 +6,22 @@
 }
 a{
   text-decoration: none;
-  cursor: default;
+  cursor: pointer;
 }
 body{
   font-family: sans-serif, -apple-system, BlinkMacSystemFont, helvetica neue, Helvetica, Roboto, Arial, pingfang sc, hiragino sans gb, microsoft jhenghei;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
   margin: 0;
-  backdrop-filter: blur(2px);
+  background-color: #222;
 }
+
+/*文件渲染部分*/
 main{
-  width: 60%;
   margin: 0 auto;
-  padding-top: 4rem;
-  padding-bottom: 1rem;
+  width: 95%;
 }
 .row{
   width: 100%;
   display: table;
-}
-.nav{
-  height: 100%;
-  padding: 5px;
-  display: flex;
-  background-color: var(--mainbg);
-  border-radius: 1rem;
-  transition: background-color 0.2s ease;
-  justify-content: space-evenly;
-  align-items: center;
-}
-.disk{
-  float: left;
-  border-radius: 1rem;
-  padding: 2px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  transition: background-color 0.2s ease;
-}
-.disk:hover{
-  background-color: #d0c0876c;
-}
-.nav-title{
-  display: inline-block;
-  margin: 3px 3px 0 10px;
-  color: #ffffff9c;
-}
-.home{
-  float:right;
-  border-radius: 1rem;
-  padding: 2px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  transition: background-color 0.2s ease;
-}
-.home:hover{
-  background-color: #d0c0876c;
-}
-.home-icon{
-  width: 2rem;
-  height: 2rem;
-  display: inline-block;
-}
-.home-text{
-  margin: 3px;
-  display: inline-block;
-  color:#ffffff8e;
 }
 .index{
   margin-top: .6rem;
@@ -84,16 +31,12 @@ main{
   background-color: var(--mainbg);
   padding: 5px;
   color: var(--files-text);
+  margin-bottom: 2rem;
 }
 .type{
   display: flex;
   justify-content: flex-start;
   align-items: center;
-}
-.name::before{
-  margin-right: 3px;
-  display: inline-block;
-  width: 20px;
 }
 .list a .name::before{
   content: "📄";
@@ -101,12 +44,27 @@ main{
 .list div .name::before{
   content: "📁";
 }
+.list-file .name.parent::before{
+  content: "🔙";
+}
+.name, .dac{
+  display: table-cell;
+  box-sizing: border-box;
+  vertical-align: middle;
+  align-items: center;
+}
 .name{
   width: 50%;
-  padding: 2px;
+  padding: 2px 0 2px 6px;
   display: inline-block;
-  margin: 5px;
+  margin: 5px 0;
   color: var(--files-text);
+  overflow-wrap: break-word;
+}
+.name::before{
+  margin-right: 3px;
+  display: inline-block;
+  width: 20px;
 }
 .name:not(.type .name){
   cursor: pointer;
@@ -118,7 +76,7 @@ main{
   width: 25%;
   padding: 5px;
   display: inline-block;
-  margin: 5px;
+  margin: 5px 0;
   color: var(--files-text);
   font-weight: 200;
 }
@@ -126,11 +84,10 @@ main{
   width: 100%;
   padding: 1px;
   border-radius: 1rem;
-  transition: background-color 0.2s ease, transform 0.2s ease-out;
-  display: flex;
-  justify-content: flex-start;
+  display: table;
   align-items: center;
   background-color: var(--files-bg);
+  transition: background-color 0.2s ease, transform 0.2s ease-out;
 }
 .list-file:hover{
   background-color: var(--files-bg-hover);
@@ -146,6 +103,12 @@ main{
   padding: 7px;
   border-radius: 1rem;
   flex-wrap: wrap;
+}
+.fastlink-a:first-child{
+  margin-left: 1rem;
+  padding: 0 .5rem;
+  font-size: larger;
+  font-weight: bold;
 }
 .fastlink-a{
   cursor: pointer;
@@ -165,22 +128,89 @@ main{
 }
 .none-file{
   width: 100%;
-  padding: 1rem;
+  padding: 1rem 0;
   text-align: center;
   color: var(--files-text);
 }
-
-@media (max-width: 768px){
-  main{
-    width: 80%;
-    padding-top: 3rem;
-    padding-bottom: 1rem;
-  }
+.none-file span{
+  display: block;
 }
-@media (max-width: 426px){
-  main{
-    width: 90%;
-    padding-top: 3rem;
-    padding-bottom: 1rem;
-  }
+.none-file svg{
+  width: 4rem;
+  height: 4rem;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+
+nav{
+  --nav-h: 3.6rem;
+  width: 100%;
+  height: var(--nav-h);
+  background-color: var(--mainbg);
+  color: #fff;
+  margin-top: 1.5rem;
+}
+.ni{
+  display: inline-block;
+  height: 100%;
+  text-align: center;
+  line-height: var(--nav-h);
+  padding: 0 .6rem;
+  cursor: pointer;
+}
+.ni:hover{
+  background-color: #fff3;
+}
+.nav-title{
+  margin-left: 2rem;
+  font-size: larger;
+  font-weight: bold;
+}
+.nav-set{
+  float: right;
+  margin-right: 1.6rem;
+}
+
+section{
+  width: 100%;
+  color: #fff;
+}
+section .container{
+  width: 80%;
+  margin: 2rem auto;
+  display: flex;
+  align-items: center;
+}
+.sec-img{
+  width: 8rem;
+  height: 8rem;
+  object-fit: cover;
+}
+.sec-img img{
+  width: 100%;
+}
+.sec-title{
+  font-size: large;
+}
+.sec-content{
+  margin-left: 2rem;
+}
+.sec-describe{
+  margin-left: 1rem;
+  font-size: medium;
+}
+.sec-describe div{
+  margin: .6rem 0;
+}
+.sec-describe svg{
+  width: 18px;
+  height: 18px;
+}
+.sec-describe a{
+  color: #fff9;
+  text-decoration: dotted underline;
+}
+.sec-describe a:hover{
+  text-decoration: underline;
 }

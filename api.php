@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json');
 
-// 新增访问频率限制（60秒内最多30次请求）
+// 新增访问频率限制（60秒内最多60次请求）
 session_start();
 if (!isset($_SESSION['api_calls'])) {
     $_SESSION['api_calls'] = ['count' => 1, 'time' => time()];
@@ -10,7 +10,7 @@ if (!isset($_SESSION['api_calls'])) {
         $_SESSION['api_calls'] = ['count' => 1, 'time' => time()];
     } else {
         $_SESSION['api_calls']['count']++;
-        if ($_SESSION['api_calls']['count'] > 30) {
+        if ($_SESSION['api_calls']['count'] > 60) {
             http_response_code(429);
             die(json_encode(['error' => '请求过于频繁']));
         }
@@ -48,7 +48,7 @@ try {
         throw new Exception('非法路径请求Illegal path requests');
     }
 
-    $rootPath = realpath(__DIR__);// 根目录路径
+    $rootPath = realpath('D:/');// 根目录路径-__DIR__
     $fullPath = realpath($rootPath . DIRECTORY_SEPARATOR . $path);
 
     if (!$fullPath || strpos($fullPath, $rootPath) !== 0) {
@@ -73,28 +73,14 @@ try {
         }
     }
 
-    // 构建父级路径
-    // 构建父级路径时保留原始中文路径
-    $parentPath = dirname('/' . ltrim($path, '/'));
-    
-    // 修正路径处理逻辑
-    if (trim($path) === '') {
-        $parentPath = null;
-    } elseif ($parentPath === '/' || $parentPath === '\\') {
-        $parentPath = '/';
-    } else {
-        $parentPath = '/'.ltrim(str_replace('\\', '/', $parentPath), '/');
-    }
-
     echo json_encode([
         'path' => $path ? '/'.$path : '/',
-        'parent' => $parentPath,
         'folders' => $folders,
-        'files' => $filesWithTime
+        'files' => $filesWithTime,
     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
 
-    // 新增1秒延迟
-    sleep(1);
+    // 新增延迟
+    usleep(500000);
 
 } catch (Exception $e) {
     http_response_code(500);
