@@ -4,14 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Explorer</title>
-  <link rel="icon" type="images/png" sizes="16*16" href="icon.svg" />
+  <link rel="icon" type="images/png" sizes="16*16" href="./icon/find.svg" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <nav>
     <div class="nav-title ni">Prcooker</div>
     <div class="nav-set ni">论坛</div>
-    <div class="nav-set ni">Home</div>
+    <div class="nav-set ni" onclick="fetchFiles('/'),window.history.pushState(null,'','/#/');">根目录</div>
   </nav>
   <section class="sec-container">
     <div class="intro sec-container">
@@ -55,7 +55,29 @@
     const warpFx = {
       render: function(){
         fastlinkContainer.innerHTML = '<div class="fastlink-a active" id="/">~/(根目录)</div>';
-        listContainer.innerHTML = `<div id="userContainer"><div id="u-Domdkw" class="personal"><div class="userOverview" onclick="warpFx.cd('/Domdkw')"><span class="userAvatar"></span><span class="userName">Domdkw</span></div><div class="userInfo">共享文件,项目仓库&项目拉取文件地址&lib<br>存储容量:共享32G<br><a class="bili otherAccount" href="https://space.bilibili.com/3546745940215889"></a><a class="gh otherAccount" href="https://github.com/Domdkw/"></a></div></div><div id="u-Richmond" class="personal"><div class="userOverview" onclick="warpFx.cd('/Richmond')"><span class="userAvatar"></span><span class="userName">Richmond</span></div><div class="userInfo">文件下载<br>存储容量:共享32G</div></div></div>`;
+        listContainer.innerHTML = `
+        <div id="userContainer">
+          <div id="u-Domdkw" class="personal"><div class="userOverview" onclick="warpFx.cd('/Domdkw')"><span class="userAvatar"></span><span class="userName">Domdkw</span></div>
+          <div class="userInfo">共享文件,项目仓库&项目拉取文件地址&lib<br>存储容量:共享32G<br><a class="bili otherAccount" href="https://space.bilibili.com/3546745940215889"></a><a class="gh otherAccount" href="https://github.com/Domdkw/"></a></div></div>
+          <div id="u-Richmond" class="personal"><div class="userOverview" onclick="warpFx.cd('/Richmond')"><span class="userAvatar"></span><span class="userName">Richmond</span></div>
+          <div class="userInfo">文件下载<br>存储容量:共享32G</div></div>
+        </div>
+        <div id="/Termux" class="list-file">
+          <span class="name">Termux</span>
+          <span class="dac">文件夹</span>
+          <span class="dac">---</span>
+        </div>
+        <div id="/Sound" class="list-file">
+          <span class="name">Sound</span>
+          <span class="dac">文件夹</span>
+          <span class="dac">---</span>
+        </div>
+        <div id="/public" class="list-file">
+          <span class="name">public</span>
+          <span class="dac">文件夹</span>
+          <span class="dac">---</span>
+        </div>
+        `;
       },
       cd: function(id){
         fetchFiles(id)
@@ -91,25 +113,47 @@
       fastlinkContainer.innerHTML = '<div class="fastlink-a active">加载中……</div>';
       listContainer.innerHTML = '<div style="height:5rem;padding:5rem"><div style="margin:0 auto;width:5rem;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" viewBox="5.963 5.963 21.940666 21.940666" version="1.1"><g id="layer1"><circle cx="16.933332" cy="16.933332" r="9.4701843" stroke="#000" stroke-width="2" fill="none" stroke-dashoffset="" id="circlebar" stroke-dasharray="1 100"> <animateTransform attributeName="transform" attributeType="AUTO" type="rotate" values="-95 16.933332 16.933332;355 16.933332 16.933332;985 16.933332 16.933332" dur="2s" repeatCount="indefinite"/> <animate attributeName="stroke-dasharray" attributeType="AUTO" type="rotate" values="0.01 100;30 100;0.01 100" dur="2s" repeatCount="indefinite"/></circle></g></svg></div></div>';
 
-      const fetchPromise = fetch('./api.php?path=' + path);
-      const timeoutPromise = new Promise((_, reject) => {
-        setTimeout(() => reject(new Error('请求超时，服务器未在7秒内响应')), 7000);
-      });
-      Promise.race([fetchPromise, timeoutPromise])
-      .then(response => response.json())
-      .then(data => {
-        const obj = Array.isArray(data)? data : [data];
-        listContainer.innerHTML = '';
-        let path = obj[0].path;
-        if (!path.endsWith('/')) path += '/';
-        //更新界面文件显示
-        updateFiles(path, obj);
-        //更新fastlink
-        fastlink(path);
-      })
-      .catch(error => {
-        listContainer.innerHTML = `<div class="none-file"><div><svg onclick="window.location.reload;" t="1753413518283" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4417" width="200" height="200"><path d="M511.582491 63.413262C265.134543 63.413262 64.62588 263.921925 64.62588 510.369873s200.508663 446.957635 446.957635 446.957635 446.957635-200.508663 446.957635-446.957635S758.031463 63.413262 511.582491 63.413262zM509.001713 751.859903c-98.517781 0-182.467775-62.623269-214.771505-150.056598l0.327458-0.134053c-2.007727-4.036943-3.38305-8.422833-3.38305-13.237489 0-16.647145 13.494339-30.142507 30.142507-30.142507 13.389962 0 24.358781 8.877181 28.2893 20.955264l0.422625-0.172939c23.269983 65.442478 85.645612 112.503307 158.972665 112.503307 93.106538 0 168.845523-75.738985 168.845523-168.845523s-75.738985-168.845523-168.845523-168.845523c-20.432355 0-39.874149 3.980661-58.013275 10.66899l21.248953 40.742936c2.486634 2.677992 4.0175 6.2831 4.0175 10.243295 0 8.417717-8.404414 14.921851-15.365966 15.07023-0.102331 0-0.206708 0-0.309038 0-0.220011 0-0.427742 0-0.647753-0.013303l-150.579507-6.463202c-5.372358-0.234337-10.229992-3.310396-12.716626-8.093329-2.486634-4.76963-2.236947-10.509355 0.647753-15.055904l80.890308-127.179564c2.8847-4.533246 8.006348-7.151887 13.365402-6.960529 5.372358 0.234337 10.227945 3.312442 12.71458 8.095375l18.580171 35.625382c26.629497-10.855232 55.683207-16.963347 86.168522-16.963347 126.338407 0 229.130537 102.791108 229.130537 229.130537S635.340119 751.859903 509.001713 751.859903z" fill="#707070" p-id="4418"></path></svg></div></span><span style="margin-top:1rem">${error.message}</span></div>`;// 处理错误
-      });
+      // 使用XHR替换Fetch API
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', './api.php?path=' + path, true);
+      xhr.timeout = 7000; // 设置7秒超时
+
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            try {
+              const data = JSON.parse(xhr.responseText);
+              const obj = Array.isArray(data) ? data : [data];
+              listContainer.innerHTML = '';
+              let path = obj[0].path;
+              if (!path.endsWith('/')) path += '/';
+              // 更新界面文件显示
+              updateFiles(path, obj);
+              // 更新fastlink
+              fastlink(path);
+            } catch (e) {
+              listContainer.innerHTML = `<div class="none-file"><span>JSON解析错误: ${e.message}</span></div>`;
+            }
+          } else if (xhr.status === 500) {
+            try {
+              const errorData = JSON.parse(xhr.responseText);
+              listContainer.innerHTML = `<div class="none-file"><span>服务器错误: ${errorData.error}</span></div>`;
+            } catch (e) {
+              listContainer.innerHTML = `<div class="none-file"><span>服务器错误: 无法解析错误信息。<br>code:${e}</span></div>`;
+            }
+          }
+        }
+      };
+
+      xhr.ontimeout = function() {
+        listContainer.innerHTML = `<div class="none-file"><div><svg onclick="fetchFiles(window.location.href.split('#')[1]);" t="1753413518283" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4417" width="200" height="200"><path d="M511.582491 63.413262C265.134543 63.413262 64.62588 263.921925 64.62588 510.369873s200.508663 446.957635 446.957635 446.957635 446.957635-200.508663 446.957635-446.957635S758.031463 63.413262 511.582491 63.413262zM509.001713 751.859903c-98.517781 0-182.467775-62.623269-214.771505-150.056598l0.327458-0.134053c-2.007727-4.036943-3.38305-8.422833-3.38305-13.237489 0-16.647145 13.494339-30.142507 30.142507-30.142507 13.389962 0 24.358781 8.877181 28.2893 20.955264l0.422625-0.172939c23.269983 65.442478 85.645612 112.503307 158.972665 112.503307 93.106538 0 168.845523-75.738985 168.845523-168.845523s-75.738985-168.845523-168.845523-168.845523c-20.432355 0-39.874149 3.980661-58.013275 10.66899l21.248953 40.742936c2.486634 2.677992 4.0175 6.2831 4.0175 10.243295 0 8.417717-8.404414 14.921851-15.365966 15.07023-0.102331 0-0.206708 0-0.309038 0-0.220011 0-0.427742 0-0.647753-0.013303l-150.579507-6.463202c-5.372358-0.234337-10.229992-3.310396-12.716626-8.093329-2.486634-4.76963-2.236947-10.509355 0.647753-15.055904l80.890308-127.179564c2.8847-4.533246 8.006348-7.151887 13.365402-6.960529 5.372358 0.234337 10.227945 3.312442 12.71458 8.095375l18.580171 35.625382c26.629497-10.855232 55.683207-16.963347 86.168522-16.963347 126.338407 0 229.130537 102.791108 229.130537 229.130537S635.340119 751.859903 509.001713 751.859903z" fill="#707070" p-id="4418"></path></svg></div></span><span style="margin-top:1rem">请求超时</span></div>`;// 处理错误
+      };
+
+      xhr.onerror = function() {
+        listContainer.innerHTML = `<div class="none-file"><span>网络错误，无法连接到服务器</span></div>`;
+      };
+
+      xhr.send();
     }
     function splitExtension(str) {
       const lastDotIndex = str.lastIndexOf('.');

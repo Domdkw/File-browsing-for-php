@@ -1,5 +1,8 @@
 <?php
 header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET');
+header('Access-Control-Allow-Headers: Content-Type');
 
 // 新增访问频率限制（60秒内最多60次请求）
 session_start();
@@ -37,14 +40,11 @@ try {
     // 修改路径获取方式
     $path = isset($_GET['path']) ? rawurldecode($_GET['path']) : '';
     $path = ltrim($path, '/');  // 去除开头的斜杠
-    $path = str_replace('/\/\./', '/', $path);  // 替换'//.'为'/'
-    $path = str_replace('/^\.\//', '', $path);  // 替换'^./'为空字符串
-    $path = str_replace('//\/+/', '/', $path);  // 替换'//'为'/'
-    $path = rtrim($path, '/');  // 去除结尾的斜杠
     // 修正路径处理逻辑
 
     // 调整安全验证逻辑
-    if (strpos($path, '..') !== false) {  // 仅检查父级目录符号
+    // 检查非法路径模式：..、./和//
+    if (strpos($path, '..') !== false || strpos($path, './') !== false || strpos($path, '//') !== false) {
         throw new Exception('非法路径请求Illegal path requests');
     }
 
@@ -83,6 +83,8 @@ try {
     usleep(500000);
 
 } catch (Exception $e) {
+    // 错误处理添加延迟
+    usleep(500000); // 0.5秒延迟
     http_response_code(500);
     echo json_encode(['error' => $e->getMessage()]);
 }

@@ -249,7 +249,7 @@ section{
   background-size: cover;
   background-position: center;
 }
-#u-Domdkw .userAvatar{background-image: url(./Domdkw/9cfa1a.jpg);}
+#u-Domdkw .userAvatar{background-image: url(./Domdkw/9cfa1a.png);}
 #u-Richmond .userAvatar{background-image: url(./Richmond/4d78ad.png);}
 .userName{
   font-size: 1.5rem;
@@ -263,7 +263,7 @@ section{
   font-size: 1rem;
 }
 .state{
-  margin-left: 2rem;
+  margin-left: 1rem;
 }
 .sec-contral{
   display: block;
