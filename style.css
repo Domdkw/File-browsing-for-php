@@ -176,15 +176,16 @@ section{
   width: 100%;
   color: #fff;
 }
-section .container{
-  width: 80%;
-  margin: 2rem auto;
+.sec-container{
   display: flex;
   align-items: center;
 }
+.intro{
+  width: 80%;
+  margin: 2rem auto;
+}
 .sec-img{
   width: 8rem;
-  height: 8rem;
   object-fit: cover;
 }
 .sec-img img{
@@ -213,4 +214,106 @@ section .container{
 }
 .sec-describe a:hover{
   text-decoration: underline;
+}
+#userContainer{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  color: #b3bdc4;
+}
+.personal{
+  width: 40%;
+  margin: 2rem 0;
+  padding: 1rem;
+}
+.userOverview{
+  display: block;
+  height: 6rem;
+  text-align: center;
+  line-height: 6rem;
+  padding: .6rem 0;
+  cursor: pointer;
+}
+.userOverview:hover{
+  background-color: #333;
+}
+.userAvatar, .userName{
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
+.userAvatar{
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+}
+#u-Domdkw .userAvatar{background-image: url(./Domdkw/9cfa1a.jpg);}
+#u-Richmond .userAvatar{background-image: url(./Richmond/4d78ad.png);}
+.userName{
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-left: 1rem;
+}
+.userInfo{
+  margin: 1rem 0 0 1rem;
+  padding-left: 6px;
+  border-left: 3px solid aliceblue;
+  font-size: 1rem;
+}
+.state{
+  margin-left: 2rem;
+}
+.sec-contral{
+  display: block;
+}
+.sec-contral button{
+  padding: 5px 10px;
+  background: none;
+  border: 2px solid #a9eef3;
+  color: #a9eef3;
+  cursor: pointer;
+}
+.sec-contral button:hover{
+  background-color: #a9eef34c;
+}
+.otherAccount{
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  margin: .5rem;
+}
+.otherAccount:hover{
+  background-color: #a9eef34c;
+}
+.bili{
+  background-image: url(./icon/bili.svg);
+  background-size: cover;
+}
+.gh{
+  background-image: url(./icon/gh.svg);
+  background-size: cover;
+}
+
+@media screen and (max-width: 768px) {
+  #userContainer{
+    flex-direction: column;
+  }
+  .personal{
+    width: 100%;
+    margin: 1rem 0;
+    padding: 0;
+  }
+}
+@media screen and (max-width: 426px) {
+  .sec-container{
+    flex-direction: column;
+  }
+  .sec-img img{
+    width: 60%;
+  }
+  .state{
+    margin-left: 0;
+  }
 }

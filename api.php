@@ -48,7 +48,7 @@ try {
         throw new Exception('非法路径请求Illegal path requests');
     }
 
-    $rootPath = realpath('D:/');// 根目录路径-__DIR__
+    $rootPath = realpath(__DIR__);// 根目录路径-
     $fullPath = realpath($rootPath . DIRECTORY_SEPARATOR . $path);
 
     if (!$fullPath || strpos($fullPath, $rootPath) !== 0) {
