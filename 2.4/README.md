@@ -1,2 +1,0 @@
-- 此版本修改了path传入方式
-- e.g. 127.0.0.1/?path=/path&SS=github.io
