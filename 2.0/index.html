@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explorer</title>
+  <link rel="icon" type="images/png" sizes="16*16" href="icon.svg" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav>
+    <div class="nav-title ni">Prcooker</div>
+    <div class="nav-set ni">论坛</div>
+    <div class="nav-set ni">Home</div>
+  </nav>
+  <section>
+    <div class="container">
+      <div class="sec-img"><img src="data:image/png;base64,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" alt="logo"></div>
+      <div class="sec-content">
+        <div class="sec-title">Prcooker的公共储存库</div>
+        <div class="sec-describe">
+          <div><svg t="1753190672368" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7510" width="200" height="200"><path fill="#fff" d="M512 16C238.06 16 16 238.06 16 512s222.06 496 496 496 496-222.06 496-496S785.94 16 512 16z m-22.68 480.46c-5.78 9.64-16.2 15.54-27.44 15.54h-0.62c-8.48 0-16.62 3.38-22.62 9.38l-11.32 11.32c-6.24 6.24-6.24 16.38 0 22.62l11.32 11.32c6 6 9.38 14.14 9.38 22.62V608c0 17.68-14.32 32-32 32h-12.22c-12.12 0-23.2-6.84-28.62-17.7l-45.24-90.46c-4.88-9.76-17.9-11.88-25.62-4.16l-38.94 38.92c-6 6-14.14 9.38-22.62 9.38H117.62C114.24 555.1 112 533.84 112 512c0-220.56 179.44-400 400-400 43.02 0 84.4 7.02 123.26 19.64l-100.32 77.06c-10.22 6.82-9.26 22.12 1.72 27.62l21.66 10.82c10.84 5.42 17.68 16.5 17.68 28.62V432c0 8.84-7.16 16-16 16h-6.12c-6.06 0-11.6-3.42-14.3-8.84-3.12-6.24-11.92-6.58-15.52-0.6l-34.74 57.9zM832 716.86c0 8.48-3.38 16.62-9.38 22.62l-19.14 19.14c-6 6-14.14 9.38-22.62 9.38h-30.32c-8.48 0-16.62-3.38-22.62-9.38l-26.02-26.02a53.534 53.534 0 0 0-50.84-14.08l-42.54 10.64c-2.54 0.64-5.14 0.96-7.76 0.96h-20.68c-8.48 0-16.62-3.38-22.62-9.38l-23.82-23.82a16.016 16.016 0 0 1-4.68-11.32v-20.4c0-6.54 3.98-12.42 10.06-14.86l78.68-31.48c3.96-1.58 7.72-3.64 11.18-6.1l47.42-33.78a15.956 15.956 0 0 1 9.28-2.96h24.18c6.46 0 12.3 3.88 14.78 9.86l10.7 25.7a8 8 0 0 0 7.38 4.92h7.6c3.56 0 6.7-2.36 7.68-5.76l8.4-28.94c1-3.42 4.12-5.76 7.68-5.76h12.12c4.42 0 8 3.58 8 8v25.86c0 4.24 1.68 8.32 4.68 11.32l23.82 23.82c6 6 9.38 14.14 9.38 22.62v49.2z" p-id="7511"></path></svg><a href="https://www.prcooker.asia">https://www.prcooker.asia</a></div>
+          <div>QQ群:<a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=Rzp3n_CJeVm0RxCeqEQPRRRvfGqLp7is&jump_from=webapi&authKey=DAlTn11StT+4t8AqIWCLvoEx/wp0IFXips3ww/nxhSQwp//hjHZlK1lNJmyAhnk8">302174706</a></div>
+          <div><a href="https://icp.gov.moe/?keyword=20250245" target="_blank">萌ICP备20250245号</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <hr>
+  <main>
+    <div class="fastlink-row row">
+      <div class="fastlink"></div>
+    </div>
+    <div class="row index">
+      <span class="type">
+        <span class="name">名称</span>
+        <span class="dac">类型</span>
+        <span class="dac">日期</span>
+      </span>
+      <div class="list"></div>
+      <hr>
+    </div>
+  </main>
+  <script>
+    const listContainer = document.querySelector(".list");
+    const fastlinkContainer = document.querySelector(".fastlink");
+
+    listContainer.addEventListener("click", function(event) {//点击文件事件
+      const target = event.target.closest(".list-file") || null;
+      if (target !== null){
+        if (target.tagName === "DIV") {//文件夹行为
+          window.history.pushState(null, null, '/#' + target.id);
+          fetchFiles(target.id);
+        }      
+      }
+    });
+
+    let jsonObject = [];
+    function fetchFiles(path) {
+      fastlinkContainer.innerHTML = '<div class="fastlink-a active">加载中……</div>';
+      listContainer.innerHTML = '<div style="height:5rem;padding:5rem"><div style="margin:0 auto;width:5rem;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" viewBox="5.963 5.963 21.940666 21.940666" version="1.1"><g id="layer1"><circle cx="16.933332" cy="16.933332" r="9.4701843" stroke="#000" stroke-width="2" fill="none" stroke-dashoffset="" id="circlebar" stroke-dasharray="1 100"> <animateTransform attributeName="transform" attributeType="AUTO" type="rotate" values="-95 16.933332 16.933332;355 16.933332 16.933332;985 16.933332 16.933332" dur="2s" repeatCount="indefinite"/> <animate attributeName="stroke-dasharray" attributeType="AUTO" type="rotate" values="0.01 100;30 100;0.01 100" dur="2s" repeatCount="indefinite"/></circle></g></svg></div></div>';
+
+      const fetchPromise = fetch('./api.php?path=' + path);
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error('请求超时，服务器未在7秒内响应')), 7000);
+      });
+      Promise.race([fetchPromise, timeoutPromise])
+      .then(response => response.json())
+      .then(data => {
+        const obj = Array.isArray(data)? data : [data];
+        listContainer.innerHTML = '';
+        let path = obj[0].path;
+        if (!path.endsWith('/')) path += '/';
+        //更新界面文件显示
+        updateFiles(path, obj);
+        //更新fastlink
+        fastlink(path);
+      })
+      .catch(error => {
+        listContainer.innerHTML = `<div class="none-file"><div><svg onclick="window.location.reload();" t="1753413518283" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4417" width="200" height="200"><path d="M511.582491 63.413262C265.134543 63.413262 64.62588 263.921925 64.62588 510.369873s200.508663 446.957635 446.957635 446.957635 446.957635-200.508663 446.957635-446.957635S758.031463 63.413262 511.582491 63.413262zM509.001713 751.859903c-98.517781 0-182.467775-62.623269-214.771505-150.056598l0.327458-0.134053c-2.007727-4.036943-3.38305-8.422833-3.38305-13.237489 0-16.647145 13.494339-30.142507 30.142507-30.142507 13.389962 0 24.358781 8.877181 28.2893 20.955264l0.422625-0.172939c23.269983 65.442478 85.645612 112.503307 158.972665 112.503307 93.106538 0 168.845523-75.738985 168.845523-168.845523s-75.738985-168.845523-168.845523-168.845523c-20.432355 0-39.874149 3.980661-58.013275 10.66899l21.248953 40.742936c2.486634 2.677992 4.0175 6.2831 4.0175 10.243295 0 8.417717-8.404414 14.921851-15.365966 15.07023-0.102331 0-0.206708 0-0.309038 0-0.220011 0-0.427742 0-0.647753-0.013303l-150.579507-6.463202c-5.372358-0.234337-10.229992-3.310396-12.716626-8.093329-2.486634-4.76963-2.236947-10.509355 0.647753-15.055904l80.890308-127.179564c2.8847-4.533246 8.006348-7.151887 13.365402-6.960529 5.372358 0.234337 10.227945 3.312442 12.71458 8.095375l18.580171 35.625382c26.629497-10.855232 55.683207-16.963347 86.168522-16.963347 126.338407 0 229.130537 102.791108 229.130537 229.130537S635.340119 751.859903 509.001713 751.859903z" fill="#707070" p-id="4418"></path></svg></div></span><span style="margin-top:1rem">${error.message}</span></div>`;// 处理错误
+      });
+    }
+    function splitExtension(str) {
+      const lastDotIndex = str.lastIndexOf('.');
+      if (lastDotIndex === -1) {
+        return [str, '']; 
+      }
+      const name = str.slice(0, lastDotIndex);
+      const extension = str.slice(lastDotIndex + 1);
+      return [name, extension];
+    }
+    function updateFiles(path, obj) {
+      const fileLength = obj[0].files.length;
+      const folderLength = obj[0].folders.length;
+      ((path)=>{//私有path处理，避免影响其他
+        let parentPath = path.slice(0, -1);
+        parentPath = parentPath.substring(0, parentPath.lastIndexOf('/')) || '/';//保留最后一个斜杠，取前面所有内容
+        //父目录，空文件夹
+        if (parentPath !== null && path !== '/') {
+          let div = document.createElement("div");
+          div.id = parentPath; 
+          div.classList.add("list-file");
+          div.innerHTML = '<span class="name parent">..</span><span class="dac">父目录</span><span class="dac">---</span>';
+
+          listContainer.appendChild(div);
+          if (folderLength === 0 && fileLength === 0){
+            listContainer.innerHTML += '<div class="none-file">此文件夹为空</div>';
+          }
+        }
+      })(path);
+      //文件夹添加
+      for (let i = 0; i < folderLength; i++) {
+        const folderName = obj[0].folders[i];
+        let div = document.createElement("div");
+        div.id = path + folderName; 
+        div.classList.add("list-file");
+        div.innerHTML = `
+          <span class="name">${folderName}</span>
+          <span class="dac">文件夹</span>
+          <span class="dac">---</span>
+        `;
+        listContainer.appendChild(div);
+      }
+      //文件添加
+      for (let i = 0; i < fileLength; i++) {
+        const file = obj[0].files[i];
+        const fileName = splitExtension(file.name)[0];
+        const extension = splitExtension(file.name)[1];
+        const date = file.mtime;
+        let a = document.createElement("a");
+        a.classList.add("list-file");
+        a.type = extension;
+        a.innerHTML = `
+          <span class="name">${fileName}</span>
+          <span class="dac">${extension}</span>
+          <span class="dac">${date}</span>
+        `;
+        a.href = path + file.name;
+        listContainer.appendChild(a);
+      }
+    }
+    function splitPathBlock(path) {
+      // 标准化路径格式（包含URI解码）
+      path = decodeURIComponent(path)
+        .replace(/\/+/g, '/') // 合并多个连续斜杠
+        .replace(/\/?$/, '/'); // 确保结尾有且只有一个斜杠
+      
+      // 使用更简洁的方式分割路径块
+      const parts = path.split('/').filter(part => part !== '');
+      const linkPath = [];
+      
+      // 构建路径链的优化实现
+      let currentPath = '/';
+      linkPath.push({ name: '/', path: currentPath });
+      
+      parts.reduce((acc, part) => {
+        const newPath = `${acc}/${part}`;
+        linkPath.push({ name: part, path: newPath });
+        return newPath;
+      }, '');
+
+      return linkPath;
+    }
+    function fastlink(path) {
+      fastlinkContainer.innerHTML = '';
+      let blocks = splitPathBlock(path);
+      for (let i = 0; i < blocks.length; i++) {
+        let div = document.createElement("div");
+        div.classList.add("fastlink-a");
+        div.innerHTML = blocks[i].name;
+        div.id = blocks[i].path;
+        fastlinkContainer.appendChild(div);
+        if (i !== blocks.length-1) {
+          div.addEventListener("click", function(event) {
+            const target = event.target.closest(".fastlink-a") || null;// 找到最近的父级元素
+            if (target.tagName === "DIV") {
+              fetchFiles(target.id);// 调用函数
+              window.history.pushState(null, null, '/#' + target.id);
+            } 
+          })
+        }else {
+          div.classList.add("active"); // 最后一个元素添加active类
+        }
+      }
+    }
+
+    window.addEventListener('popstate', popstate);
+    // 初始化
+    popstate();
+    function popstate() {
+      const golink = window.location.href.split("#")[1];
+      if(golink) {
+        fetchFiles(golink); 
+      }else {
+        fetchFiles("/");// 初始化
+        window.history.pushState(null, null, '/#/');
+      }
+    }
+  </script>
+</body>
+</html>
